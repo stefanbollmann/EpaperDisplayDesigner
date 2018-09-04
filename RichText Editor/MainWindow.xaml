@@ -1,0 +1,83 @@
+﻿<Window x:Class="WpfTutorialSamples.Rich_text_controls.EpaperEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="EPaper-DisplayDesigner" 
+        Width="700" Height="500">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Open" Executed="Open_Executed" />
+        <CommandBinding Command="ApplicationCommands.Save" Executed="Save_Executed" />
+    </Window.CommandBindings>
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top" >
+            
+            <Button Command="ApplicationCommands.Open">Open RTF</Button>
+            
+            <Separator />
+            
+            <Button Command="ApplicationCommands.Save">Save RTF</Button>
+
+            <Separator />
+            
+            <ToggleButton Command="EditingCommands.ToggleBold" Name="btnBold">
+                <Image Source="Images\Bold_16x.png" Width="16" Height="16" />
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleItalic" Name="btnItalic">
+                <Image Source="Images\Italic_16xSM.png" Width="16" Height="16" />
+            </ToggleButton>
+            <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
+                <Image Source="Images\Underline_16xSM.png" Width="16" Height="16" />
+            </ToggleButton>
+            
+            <Separator />
+
+            <RadioButton x:Name="TextAlignLeft" Tag="Left" Margin="5,0,0,0" GroupName="TextAlign" Checked="TextAlignLeft_Checked">
+                <StackPanel>
+                    <Image Source="Images\AlignLeft_16x.png" Width="16" Height="16" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="TextAlignCenter" Tag="Center" IsChecked="true" Margin="5,0,0,0" GroupName="TextAlign" Checked="TextAlignCenter_Checked">
+                <StackPanel>
+                    <Image Source="Images\TextCenter_16x.png" Width="16" Height="16" />
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="TextAlignRight" Tag="Right" Margin="5,0,0,0" GroupName="TextAlign" Checked="TextAlignRight_Checked" >
+                <StackPanel>
+                    <Image Source="Images\AlignRight_16x.png" Width="16" Height="16" />
+                </StackPanel>
+            </RadioButton>
+
+            <Separator />
+
+            <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
+            <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
+
+            <Separator />
+
+            <Button Click="Up_Click"> + </Button>
+            <Button Click="Down_Click"> - </Button>
+
+            <Separator />
+
+            <Button Click="Send">Send File to Display >>> </Button>
+
+            <Separator />
+            
+        </ToolBar>
+
+        <Grid>
+            <RichTextBox DockPanel.Dock="Top" x:Name="rtbEditor"   
+                    HorizontalAlignment="Left" VerticalAlignment="Top"  
+                    SelectionChanged="rtbEditor_SelectionChanged" Block.LineHeight="2" Width="640" Height="384">
+                <FlowDocument x:Name="flowDoc" >
+                    <Paragraph x:Name="topmargin" TextAlignment="Center" FontSize="1" >
+                    </Paragraph>
+                    <Paragraph TextAlignment="Center" FontSize="72" >
+                        <Bold>Hello, world!</Bold>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+        </Grid>
+
+    </DockPanel>
+
+</Window>
